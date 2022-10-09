@@ -1,12 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import CategoryHomeScreen from './src/screens/StackScreens/CategoryHomeScreen';
+import CategoryCommentScreen from './src/screens/StackScreens/CategoryCommentScreen';
+import RecipeHomeScreen from './src/screens/StackScreens/RecipeHomeScreen';
+import RecipeCommentScreen from './src/screens/StackScreens/RecipeCommentScreen';
+import HomeScreen from './src/screens/StackScreens/HomeScreen';
 
-export default function App() {
+const Stack = createNativeStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+
+      <Stack.Navigator initialRouteName={HomeScreen}>
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="CategoryHome" component={CategoryHomeScreen} />
+        <Stack.Screen name="CategoryComments" component={CategoryCommentScreen} />
+        <Stack.Screen name="RecipeHome" component={RecipeHomeScreen} />
+        <Stack.Screen name="RecipeComments" component={RecipeCommentScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -18,3 +33,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
